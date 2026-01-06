@@ -48,15 +48,16 @@ def root_head():
     return Response(status_code=200)
 
 @app.get("/")
-def root_get():
+def read_root(settings: config.Settings = Depends(get_settings)):
+    print(settings.app_name)
     return {"status": "ok"}
 
 
-@app.get("/")
-def read_root(settings: config.Settings = Depends(get_settings)):
+#@app.get("/")
+#def read_root(settings: config.Settings = Depends(get_settings)):
     # print the app_name configuration
-    print(settings.app_name)
-    return "Hello World"
+#    print(settings.app_name)
+#    return "Hello World"
 
 
 @app.get("/items/{item_id}")
