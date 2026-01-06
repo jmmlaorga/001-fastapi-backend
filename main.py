@@ -43,6 +43,14 @@ async def http_exception_handler(request, exc):
 def get_settings():
     return config.Settings()
 
+@app.head("/")
+def root_head():
+    return Response(status_code=200)
+
+@app.get("/")
+def root_get():
+    return {"status": "ok"}
+
 
 @app.get("/")
 def read_root(settings: config.Settings = Depends(get_settings)):
